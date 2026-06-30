@@ -1,0 +1,1259 @@
+{
+  "profile": "mitsubishi_electric_par40maac_melremo",
+  "version": "0.1.0",
+  "device_family": "Mitsubishi Electric PAR-40MAAC / MELRemo BLE controller",
+  "tested_with": [
+    "PAR-40MAAC",
+    "MELRemo BLE"
+  ],
+  "target_name_pattern": "M/R_*",
+  "safety_boundary": [
+    "Replay confirmed fixed sequences only.",
+    "Use ATT Write Command / no-response writes for confirmed actions.",
+    "Do not infer protocol fields from byte offsets.",
+    "Do not generate new control payloads without a fresh capture and physical validation."
+  ],
+  "gatt": {
+    "service_uuid": "0277df18-e796-11e6-bf01-fe55135034f3",
+    "read_characteristic_1": "799e3b22-e797-11e6-bf01-fe55135034f3",
+    "read_characteristic_2": "def9382a-e795-11e6-bf01-fe55135034f3",
+    "write_characteristic": "e48c1528-e795-11e6-bf01-fe55135034f3",
+    "notify_characteristic": "ea1ea690-e795-11e6-bf01-fe55135034f3"
+  },
+  "write_mode": {
+    "confirmed_actions_response": false,
+    "manual_write_default_response": true
+  },
+  "composite_actions": {
+    "mode_auto": [
+      "mode_cooling",
+      "fan_auto"
+    ]
+  },
+  "confirmed_actions": {
+    "cooling": {
+      "description": "Confirmed COOLING mode sequence",
+      "source_cluster": "CL35 / CMD274-CMD282 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD274",
+          "hex": "0B 00 01 01 00 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD275",
+          "hex": "0B 00 02 03 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD276",
+          "hex": "0B 00 03 01 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD277",
+          "hex": "17 00 04 05 01 01 02 00 00 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD278",
+          "hex": "64 00 00 C6 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD279",
+          "hex": "06 00 05 05 02 00 12 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD280",
+          "hex": "0B 00 06 03 04 01 00 00 00 00 00 19 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD281",
+          "hex": "0B 00 07 01 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD282",
+          "hex": "0B 00 00 03 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "dry": {
+      "description": "Confirmed DRY mode sequence",
+      "source_cluster": "CL29 / CMD226-CMD234 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD226",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD227",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD228",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD229",
+          "hex": "17 00 07 05 01 01 02 00 00 31 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD230",
+          "hex": "34 00 00 C1 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD231",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD232",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD233",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD234",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "fan": {
+      "description": "Confirmed FAN mode sequence; notify response may lag or repeat previous mode",
+      "source_cluster": "CL30 / CMD235-CMD243 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD235",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD236",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD237",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD238",
+          "hex": "17 00 07 05 01 01 02 00 00 01 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD239",
+          "hex": "64 00 00 C1 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD240",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD241",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD242",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD243",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "fan_auto": {
+      "description": "Captured AUTO fan-speed sequence",
+      "source_cluster": "CL10 / CMD380-CMD388 / hci_att_timeline_20260630_193305.txt / user action order fan high -> auto",
+      "steps": [
+        {
+          "label": "CMD380",
+          "hex": "0B 00 05 01 00 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD381",
+          "hex": "0B 00 06 03 00 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD382",
+          "hex": "0B 00 07 01 04 01 00 00 00 00 00 18 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD383",
+          "hex": "17 00 00 05 01 01 00 00 01 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD384",
+          "hex": "64 00 00 C1 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD385",
+          "hex": "06 00 01 05 02 00 0E 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD386",
+          "hex": "0B 00 02 03 04 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD387",
+          "hex": "0B 00 03 01 01 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD388",
+          "hex": "0B 00 04 03 01 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "fan_high": {
+      "description": "Captured HIGH fan-speed sequence",
+      "source_cluster": "CL09 / CMD371-CMD379 / hci_att_timeline_20260630_193305.txt / user action order fan medium -> high",
+      "steps": [
+        {
+          "label": "CMD371",
+          "hex": "0B 00 05 01 00 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD372",
+          "hex": "0B 00 06 03 00 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD373",
+          "hex": "0B 00 07 01 04 01 00 00 00 00 00 18 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD374",
+          "hex": "17 00 00 05 01 01 00 00 01 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD375",
+          "hex": "63 00 00 C0 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD376",
+          "hex": "06 00 01 05 02 00 0E 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD377",
+          "hex": "0B 00 02 03 04 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD378",
+          "hex": "0B 00 03 01 01 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD379",
+          "hex": "0B 00 04 03 01 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "fan_low": {
+      "description": "Confirmed LOW fan-speed sequence",
+      "source_cluster": "CL06 / CMD346-CMD354 / hci_att_timeline_20260630_193305.txt / validated in session_20260630_193823.txt and session_20260630_194032.txt",
+      "steps": [
+        {
+          "label": "CMD346",
+          "hex": "0B 00 06 01 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD347",
+          "hex": "0B 00 07 03 00 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD348",
+          "hex": "0B 00 00 01 04 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD349",
+          "hex": "17 00 01 05 01 01 00 00 01 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD350",
+          "hex": "61 00 00 BF 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD351",
+          "hex": "06 00 02 05 02 00 0F 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD352",
+          "hex": "0B 00 03 03 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD353",
+          "hex": "0B 00 04 01 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD354",
+          "hex": "0B 00 05 03 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "fan_medium": {
+      "description": "Captured MEDIUM fan-speed sequence",
+      "source_cluster": "CL07 / CMD355-CMD363 / hci_att_timeline_20260630_193305.txt / user action order fan low -> medium",
+      "steps": [
+        {
+          "label": "CMD355",
+          "hex": "0B 00 06 01 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD356",
+          "hex": "0B 00 07 03 00 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD357",
+          "hex": "0B 00 00 01 04 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD358",
+          "hex": "17 00 01 05 01 01 00 00 01 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD359",
+          "hex": "62 00 00 C0 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD360",
+          "hex": "06 00 02 05 02 00 0F 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD361",
+          "hex": "0B 00 03 03 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD362",
+          "hex": "0B 00 04 01 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD363",
+          "hex": "0B 00 05 03 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "heat": {
+      "description": "Confirmed HEAT mode sequence",
+      "source_cluster": "CL32 / CMD251-CMD259 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD251",
+          "hex": "0B 00 03 01 00 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD252",
+          "hex": "0B 00 04 03 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD253",
+          "hex": "0B 00 05 01 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD254",
+          "hex": "17 00 06 05 01 01 02 00 00 11 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD255",
+          "hex": "64 00 00 D0 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD256",
+          "hex": "06 00 07 05 02 00 14 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD257",
+          "hex": "0B 00 00 03 04 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD258",
+          "hex": "0B 00 01 01 01 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD259",
+          "hex": "0B 00 02 03 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "mode_cooling": {
+      "description": "COOLING mode sequence alias",
+      "source_cluster": "alias of cooling: CL35 / CMD274-CMD282 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD274",
+          "hex": "0B 00 01 01 00 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD275",
+          "hex": "0B 00 02 03 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD276",
+          "hex": "0B 00 03 01 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD277",
+          "hex": "17 00 04 05 01 01 02 00 00 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD278",
+          "hex": "64 00 00 C6 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD279",
+          "hex": "06 00 05 05 02 00 12 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD280",
+          "hex": "0B 00 06 03 04 01 00 00 00 00 00 19 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD281",
+          "hex": "0B 00 07 01 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD282",
+          "hex": "0B 00 00 03 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "mode_dry": {
+      "description": "DRY mode sequence alias",
+      "source_cluster": "alias of dry: CL29 / CMD226-CMD234 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD226",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD227",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD228",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD229",
+          "hex": "17 00 07 05 01 01 02 00 00 31 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD230",
+          "hex": "34 00 00 C1 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD231",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD232",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD233",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD234",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "mode_fan": {
+      "description": "FAN-only mode sequence alias",
+      "source_cluster": "alias of fan: CL30 / CMD235-CMD243 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD235",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD236",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD237",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD238",
+          "hex": "17 00 07 05 01 01 02 00 00 01 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD239",
+          "hex": "64 00 00 C1 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD240",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD241",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD242",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD243",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "mode_heat": {
+      "description": "HEAT mode sequence alias",
+      "source_cluster": "alias of heat: CL32 / CMD251-CMD259 / hci_att_timeline_20260630_191923.txt / validated in session_20260630_192440.txt",
+      "steps": [
+        {
+          "label": "CMD251",
+          "hex": "0B 00 03 01 00 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD252",
+          "hex": "0B 00 04 03 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD253",
+          "hex": "0B 00 05 01 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD254",
+          "hex": "17 00 06 05 01 01 02 00 00 11 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD255",
+          "hex": "64 00 00 D0 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD256",
+          "hex": "06 00 07 05 02 00 14 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD257",
+          "hex": "0B 00 00 03 04 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD258",
+          "hex": "0B 00 01 01 01 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD259",
+          "hex": "0B 00 02 03 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "off": {
+      "description": "Confirmed OFF sequence",
+      "source_cluster": "CL39 / CMD308-CMD316 / hci_att_timeline_20260629_222354.txt",
+      "steps": [
+        {
+          "label": "CMD308",
+          "hex": "0B 00 01 01 00 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.13
+        },
+        {
+          "label": "CMD309",
+          "hex": "0B 00 02 03 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.12
+        },
+        {
+          "label": "CMD310",
+          "hex": "0B 00 03 01 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.09
+        },
+        {
+          "label": "CMD311",
+          "hex": "17 00 04 05 01 01 01 00 00 08 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD312",
+          "hex": "34 00 00 94 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD313",
+          "hex": "06 00 05 05 02 00 12 00",
+          "delay_after_seconds": 0.12
+        },
+        {
+          "label": "CMD314",
+          "hex": "0B 00 06 03 04 01 00 00 00 00 00 19 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD315",
+          "hex": "0B 00 07 01 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD316",
+          "hex": "0B 00 00 03 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "on": {
+      "description": "Confirmed ON sequence",
+      "source_cluster": "CL37 / CMD292-CMD300 / hci_att_timeline_20260629_222354.txt",
+      "steps": [
+        {
+          "label": "CMD292",
+          "hex": "0B 00 02 01 00 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.07
+        },
+        {
+          "label": "CMD293",
+          "hex": "0B 00 03 03 00 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD294",
+          "hex": "0B 00 04 01 04 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD295",
+          "hex": "17 00 05 05 01 01 01 00 00 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD296",
+          "hex": "34 00 00 96 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD297",
+          "hex": "06 00 06 05 02 00 13 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD298",
+          "hex": "0B 00 07 03 04 01 00 00 00 00 00 1A 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD299",
+          "hex": "0B 00 00 01 01 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD300",
+          "hex": "0B 00 01 03 01 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_235": {
+      "description": "Captured 23.5 C target-temperature sequence",
+      "source_cluster": "CL14 / CMD107-CMD115 / hci_att_timeline_20260630_185628.txt / user action order target 23.5 C",
+      "steps": [
+        {
+          "label": "CMD107",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD108",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD109",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD110",
+          "hex": "17 00 07 05 01 01 00 01 00 09 35 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD111",
+          "hex": "34 00 00 7D 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD112",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD113",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD114",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD115",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_240": {
+      "description": "Captured 24.0 C target-temperature sequence",
+      "source_cluster": "CL15 / CMD116-CMD124 / hci_att_timeline_20260630_185628.txt / user action order target 24.0 C",
+      "steps": [
+        {
+          "label": "CMD116",
+          "hex": "0B 00 04 01 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD117",
+          "hex": "0B 00 05 03 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD118",
+          "hex": "0B 00 06 01 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD119",
+          "hex": "17 00 07 05 01 01 00 01 00 09 40 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD120",
+          "hex": "34 00 00 88 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD121",
+          "hex": "06 00 00 05 02 00 0D 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD122",
+          "hex": "0B 00 01 03 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD123",
+          "hex": "0B 00 02 01 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD124",
+          "hex": "0B 00 03 03 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_245": {
+      "description": "Captured 24.5 C target-temperature sequence",
+      "source_cluster": "CL17 / CMD132-CMD140 / hci_att_timeline_20260630_185628.txt / user action order target 24.5 C",
+      "steps": [
+        {
+          "label": "CMD132",
+          "hex": "0B 00 03 01 00 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD133",
+          "hex": "0B 00 04 03 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD134",
+          "hex": "0B 00 05 01 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD135",
+          "hex": "17 00 06 05 01 01 00 01 00 09 45 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD136",
+          "hex": "34 00 00 8C 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD137",
+          "hex": "06 00 07 05 02 00 14 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD138",
+          "hex": "0B 00 00 03 04 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD139",
+          "hex": "0B 00 01 01 01 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD140",
+          "hex": "0B 00 02 03 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_250": {
+      "description": "Captured 25.0 C target-temperature sequence",
+      "source_cluster": "CL18 / CMD141-CMD149 / hci_att_timeline_20260630_185628.txt / user action order target 25.0 C",
+      "steps": [
+        {
+          "label": "CMD141",
+          "hex": "0B 00 03 01 00 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD142",
+          "hex": "0B 00 04 03 00 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD143",
+          "hex": "0B 00 05 01 04 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD144",
+          "hex": "17 00 06 05 01 01 00 01 00 09 50 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD145",
+          "hex": "34 00 00 97 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD146",
+          "hex": "06 00 07 05 02 00 14 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD147",
+          "hex": "0B 00 00 03 04 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD148",
+          "hex": "0B 00 01 01 01 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD149",
+          "hex": "0B 00 02 03 01 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_255": {
+      "description": "Captured 25.5 C target-temperature sequence",
+      "source_cluster": "CL20 / CMD157-CMD165 / hci_att_timeline_20260630_185628.txt / user action order target 25.5 C",
+      "steps": [
+        {
+          "label": "CMD157",
+          "hex": "0B 00 02 01 00 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD158",
+          "hex": "0B 00 03 03 00 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD159",
+          "hex": "0B 00 04 01 04 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD160",
+          "hex": "17 00 05 05 01 01 00 01 00 09 55 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD161",
+          "hex": "34 00 00 9B 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD162",
+          "hex": "06 00 06 05 02 00 13 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD163",
+          "hex": "0B 00 07 03 04 01 00 00 00 00 00 1A 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD164",
+          "hex": "0B 00 00 01 01 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD165",
+          "hex": "0B 00 01 03 01 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_260": {
+      "description": "Captured 26.0 C target-temperature sequence",
+      "source_cluster": "CL22 / CMD173-CMD181 / hci_att_timeline_20260630_185628.txt / user action order target 26.0 C",
+      "steps": [
+        {
+          "label": "CMD173",
+          "hex": "0B 00 01 01 00 01 00 00 00 00 00 0E 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD174",
+          "hex": "0B 00 02 03 00 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD175",
+          "hex": "0B 00 03 01 04 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD176",
+          "hex": "17 00 04 05 01 01 00 01 00 09 60 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD177",
+          "hex": "34 00 00 A5 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD178",
+          "hex": "06 00 05 05 02 00 12 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD179",
+          "hex": "0B 00 06 03 04 01 00 00 00 00 00 19 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD180",
+          "hex": "0B 00 07 01 01 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD181",
+          "hex": "0B 00 00 03 01 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_265": {
+      "description": "Captured 26.5 C target-temperature sequence",
+      "source_cluster": "CMD100-CMD108 / hci_att_timeline_20260630_211927.txt / user action order target 26.5 C",
+      "steps": [
+        {
+          "label": "CMD100",
+          "hex": "0B 00 05 01 00 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD101",
+          "hex": "0B 00 06 03 00 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD102",
+          "hex": "0B 00 07 01 04 01 00 00 00 00 00 18 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD103",
+          "hex": "17 00 00 05 01 01 00 01 00 09 65 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD104",
+          "hex": "33 00 00 A5 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD105",
+          "hex": "06 00 01 05 02 00 0E 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD106",
+          "hex": "0B 00 02 03 04 01 00 00 00 00 00 15 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD107",
+          "hex": "0B 00 03 01 01 01 00 00 00 00 00 11 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD108",
+          "hex": "0B 00 04 03 01 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_270": {
+      "description": "Captured 27.0 C target-temperature sequence",
+      "source_cluster": "CMD034-CMD042 / hci_att_timeline_20260630_211927.txt / user action order target 27.0 C",
+      "steps": [
+        {
+          "label": "CMD034",
+          "hex": "0B 00 00 01 00 01 00 00 00 00 00 0D 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD035",
+          "hex": "0B 00 01 03 00 01 00 00 00 00 00 10 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD036",
+          "hex": "0B 00 02 01 04 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD037",
+          "hex": "17 00 03 05 01 01 00 01 00 09 70 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD038",
+          "hex": "33 00 00 B3 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD039",
+          "hex": "06 00 04 05 02 00 11 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD040",
+          "hex": "0B 00 05 03 04 01 00 00 00 00 00 18 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD041",
+          "hex": "0B 00 06 01 01 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD042",
+          "hex": "0B 00 07 03 01 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_275": {
+      "description": "Captured 27.5 C target-temperature sequence",
+      "source_cluster": "CMD050-CMD058 / hci_att_timeline_20260630_211927.txt / user action order target 27.5 C",
+      "steps": [
+        {
+          "label": "CMD050",
+          "hex": "0B 00 07 01 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD051",
+          "hex": "0B 00 00 03 00 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD052",
+          "hex": "0B 00 01 01 04 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD053",
+          "hex": "17 00 02 05 01 01 00 01 00 09 75 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD054",
+          "hex": "33 00 00 B7 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD055",
+          "hex": "06 00 03 05 02 00 10 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD056",
+          "hex": "0B 00 04 03 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD057",
+          "hex": "0B 00 05 01 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD058",
+          "hex": "0B 00 06 03 01 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    },
+    "temp_280": {
+      "description": "Captured 28.0 C target-temperature sequence",
+      "source_cluster": "CMD059-CMD067 / hci_att_timeline_20260630_211927.txt / user action order target 28.0 C",
+      "steps": [
+        {
+          "label": "CMD059",
+          "hex": "0B 00 07 01 00 01 00 00 00 00 00 14 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD060",
+          "hex": "0B 00 00 03 00 01 00 00 00 00 00 0F 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD061",
+          "hex": "0B 00 01 01 04 01 00 00 00 00 00 12 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD062",
+          "hex": "17 00 02 05 01 01 00 01 00 09 80 02 50 02 90 01 00 00 00 00",
+          "delay_after_seconds": 0.003
+        },
+        {
+          "label": "CMD063",
+          "hex": "33 00 00 C2 01",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD064",
+          "hex": "06 00 03 05 02 00 10 00",
+          "delay_after_seconds": 0.24
+        },
+        {
+          "label": "CMD065",
+          "hex": "0B 00 04 03 04 01 00 00 00 00 00 17 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD066",
+          "hex": "0B 00 05 01 01 01 00 00 00 00 00 13 00",
+          "delay_after_seconds": 0.06
+        },
+        {
+          "label": "CMD067",
+          "hex": "0B 00 06 03 01 01 00 00 00 00 00 16 00",
+          "delay_after_seconds": 0.0
+        }
+      ]
+    }
+  }
+}

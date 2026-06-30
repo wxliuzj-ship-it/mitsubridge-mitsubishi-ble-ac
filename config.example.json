@@ -1,0 +1,24 @@
+{
+  "target": {
+    "name": "M/R_XXXX",
+    "address": "",
+    "scan_timeout_seconds": 8,
+    "connect_timeout_seconds": 15,
+    "reconnect_delay_seconds": 5
+  },
+  "gatt": {
+    "service_uuid": "0277df18-e796-11e6-bf01-fe55135034f3",
+    "read_characteristic_1": "799e3b22-e797-11e6-bf01-fe55135034f3",
+    "read_characteristic_2": "def9382a-e795-11e6-bf01-fe55135034f3",
+    "write_characteristic": "e48c1528-e795-11e6-bf01-fe55135034f3",
+    "notify_characteristic": "ea1ea690-e795-11e6-bf01-fe55135034f3"
+  },
+  "homekit": {
+    "name": "Mitsubishi AC",
+    "username": "4A:4D:52:40:AC:02",
+    "pin": "031-45-154",
+    "setup_id": "MI02",
+    "port": 51827,
+    "expose_command_switches": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "mitsubridge",
+  "version": "0.1.0",
+  "description": "Local BLE replay and HomeKit bridge package for Mitsubishi Electric PAR-40MAAC / MELRemo controllers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "homekit": "node homekit_bridge.js",
+    "homekit:reset": "rm -rf .homekit && node homekit_bridge.js"
+  },
+  "keywords": [
+    "mitsubishi-electric",
+    "par40maac",
+    "melremo",
+    "ble",
+    "homekit",
+    "siri",
+    "air-conditioner"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "hap-nodejs": "^0.14.3"
+  }
+}

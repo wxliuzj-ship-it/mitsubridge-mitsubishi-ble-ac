@@ -1,0 +1,12 @@
+.DS_Store
+.venv/
+.homekit/
+node_modules/
+logs/
+config.json
+*.local.json
+*.log
+npm-debug.log*
+dist/
+__pycache__/
+*.pyc
